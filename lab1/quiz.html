@@ -6,88 +6,48 @@
     <title>Quiz Page</title>
     <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(120deg, #84fab0, #8fd3f4);
-            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
         }
-
         .container {
-            max-width: 700px;
-            margin: 50px auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            padding: 20px 30px;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         h1 {
+            font-size: 24px; /* ปรับขนาด title */
             text-align: center;
-            color: #2c3e50;
+            color: #007bff;
         }
-
         .question {
             margin: 20px 0;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 6px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .question h3 {
-            margin: 0;
-            color: #2c3e50;
-        }
-
         .option {
             display: block;
-            margin: 10px 0;
-            cursor: pointer;
+            margin: 5px 0;
         }
-
-        .option input {
-            margin-right: 10px;
-        }
-
         .button {
+            margin-top: 20px;
+        }
+        #submit-btn {
             display: block;
             width: 100%;
-            padding: 12px 20px;
-            background: #2ecc71;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
             border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            text-align: center;
         }
-
-        .button:hover {
-            background: #27ae60;
+        #submit-btn:hover {
+            background-color: #0056b3;
         }
-
-        #result {
-            text-align: center;
-            padding: 20px;
-            background: #ecf0f1;
-            border-radius: 6px;
-        }
-
         #result h2 {
-            margin: 0;
-            color: #2c3e50;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 20px;
-                padding: 15px;
-            }
-            .button {
-                font-size: 14px;
-            }
+            color: #28a745;
         }
     </style>
 </head>
@@ -95,7 +55,7 @@
     <div class="container">
         <h1>Quiz</h1>
         <div id="quiz-container"></div>
-        <button id="submit-btn" class="button" style="display: none;">Submit Answers</button>
+        <button id="submit-btn" style="display: none;">Submit Answers</button>
         <div id="result" style="display: none; margin-top: 20px;">
             <h2>Your Score: <span id="score"></span></h2>
         </div>
@@ -112,9 +72,9 @@
         // โหลดคำถามจาก quiz.json
         async function loadQuiz() {
             try {
-                const response = await fetch('quiz.json'); // ชื่อไฟล์ quiz.json
+                const response = await fetch('quiz.json');
                 quizData = await response.json();
-                renderQuiz(quizData.quiz); // แสดงคำถาม
+                renderQuiz(quizData.quiz);
             } catch (error) {
                 console.error('Error loading quiz:', error);
             }
