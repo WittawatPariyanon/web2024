@@ -6,22 +6,88 @@
     <title>Quiz Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            color: #333;
         }
+
         .container {
-            max-width: 600px;
-            margin: auto;
+            max-width: 700px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
         }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
         .question {
             margin: 20px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .question h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
         .option {
             display: block;
-            margin: 5px 0;
+            margin: 10px 0;
+            cursor: pointer;
         }
+
+        .option input {
+            margin-right: 10px;
+        }
+
         .button {
-            margin-top: 20px;
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: #2ecc71;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+        }
+
+        .button:hover {
+            background: #27ae60;
+        }
+
+        #result {
+            text-align: center;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 6px;
+        }
+
+        #result h2 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            .button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
