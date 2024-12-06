@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.7.4/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.7.4/dist/vuetify.min.js"></script>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        #app {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        header {
+            background-color: #6200ea;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .quiz-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            margin-top: 20px;
+        }
+        .result {
+            text-align: center;
+            color: #6200ea;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Online Quiz</h1>
+            <p>แบบทดสอบปรนัยพร้อมผลคะแนน</p>
+        </header>
+        <v-app>
+            <v-container>
+                <div v-if="page === 0" class="quiz-container">
+                    <h1>ยินดีต้อนรับสู่แบบทดสอบ</h1>
+                    <p>แบบทดสอบนี้มีจำนวน 20 ข้อ</p>
+                    <v-btn v-for="quiz in quizzes" :key="quiz.file" @click="loadQuiz(quiz.file)" class="my-2 btn" color="secondary" large>
+                        {{ quiz.name }}
+                    </v-btn>
+                    </v-btn>
+                </div>
+                <div v-if="page === 1" class="quiz-container">
+                    <h2>เลือกชุดคำถาม</h2>
+                    <v-btn v-for="quiz in quizzes" :key="quiz.file" @click="loadQuiz(quiz.file)" class="my-2 btn" color="secondary" large>
+                        {{ quiz.name }}
+                    </v-btn>
+                </div>
+                <div v-if="page === 2" class="quiz-container">
+                    <h2>คำถาม</h2>
+                    <div v-for="(q, index) in questions" :key="index" class="my-3">
+                        <h3>ข้อที่ {{ index + 1 }}</h3>
+                        <p>{{ q.title }}</p>
+                        <v-radio-group v-model="answers[index]" :key="index">
+                            <v-radio v-for="(option, idx) in q.options" :label="option" :value="idx + 1" :key="idx"></v-radio>
+                        </v-radio-group>
+                    </div>
+                    <v-btn class="btn" color="success" @click="checkAnswers" :disabled="!isComplete">
+                        <v-icon left>mdi-check</v-icon> ส่งคำตอบ
+                    </v-btn>
+                </div>
+                <div v-if="page === 3" class="quiz-container result">
+                    <h2>ผลการทำแบบทดสอบ</h2>
+                    <p>คุณได้คะแนน {{ score }} / {{ questions.length }}</p>
+                    <v-btn class="btn" color="primary" @click="resetQuiz">
+                        <v-icon left>mdi-restart</v-icon> เริ่มใหม่
+                    </v-btn>
+                </div>
+            </v-container>
+        </v-app>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
